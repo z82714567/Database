@@ -85,4 +85,17 @@ CREATE TABLE `Order` (
 	`orderDate`			DATETIME NOT NULL,
 	FOREIGN KEY(`orderProduct`) REFERENCES `Product`(`pNo`),
 	FOREIGN KEY(`orderUser`) REFERENCES `User`(`uid`)
-);Farmstory
+);
+
+# 게시물 채우기
+INSERT INTO `Product` (`type`, `pName`, `price`, `delivery`, `stock`, `thumb1`, `thumb2`, `thumb3`, `seller`, `rdate`)
+SELECT `type`, `pName`, `price`, `delivery`, `stock`, `thumb1`, `thumb2`, `thumb3`, `seller`, `rdate` FROM `Product`;
+
+
+#order 컬럼 추가
+ALTER TABLE `Order` ADD COLUMN `orderEtc` VARCHAR(255) AFTER `orderTotal`;
+ALTER TABLE `Order` ADD COLUMN `receiver` VARCHAR(255) AFTER `orderTotal`;
+ALTER TABLE `Order` ADD COLUMN `hp` VARCHAR(255) AFTER `receiver`;
+ALTER TABLE `Order` ADD COLUMN `zip` VARCHAR(255) AFTER `hp`;
+ALTER TABLE `Order` ADD COLUMN `addr1` VARCHAR(255) AFTER `zip`;
+ALTER TABLE `Order` ADD COLUMN `addr2` VARCHAR(255) AFTER `addr1`;
